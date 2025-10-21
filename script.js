@@ -15,15 +15,69 @@
   })
 
   cw1.addEventListener("click", function () {
-    //TODO
+    answer.innerHTML = 'Loading...'
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => response.json())
+        .then(posts => {
+          let html = '<div class="posts">'
+          posts.forEach(p => {
+            html += `<div class="post">
+                        <h3>${p.title}</h3>
+                        <p>${p.body}</p>
+                        <div class="meta">ID: ${p.id} | userId: ${p.userId}</div>
+                     </div>`
+          })
+          html += '</div>'
+          answer.innerHTML = html
+        })
+        .catch(err => {
+          answer.innerHTML = 'Błąd: ' + err
+        })
+    }, 1000)
   })
 
   cw2.addEventListener("click", function () {
-    //TODO
+    answer.innerHTML = 'Loading...'
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then(response => response.json())
+        .then(p => {
+          let html = '<div class="posts">'
+          html += `<div class="post">
+                      <h3>${p.title}</h3>
+                      <p>${p.body}</p>
+                      <div class="meta">ID: ${p.id} | userId: ${p.userId}</div>
+                   </div>`
+          html += '</div>'
+          answer.innerHTML = html
+        })
+      .catch(err => {
+        answer.innerHTML = 'Błąd: ' + err
+      })
+    }, 1000)
   })
 
   cw3.addEventListener("click", function () {
-    //TODO
+    answer.innerHTML = 'Processing…'
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify({
+        title: 'Nowy post',
+        body: 'Treść',
+        userId: 1
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        answer.innerHTML = `Dodano nowy post o ID = ${data.id}`
+      })
+      .catch(err => {
+        answer.innerHTML = 'Blad: ' + err
+      })
   })
 
 })();
