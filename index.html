@@ -4,9 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>repl.it</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 16px; }
+      .controls { display:flex; gap:8px; margin-bottom:8px; }
+      button { padding:8px 12px; cursor:pointer; }
+      #answer { margin-top: 12px; }
+      .posts { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:12px; }
+      .post { border:1px solid #ddd; padding:10px; border-radius:6px; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,0.03); }
+      .post h3 { margin:0 0 6px 0; font-size:1.05rem; color:#222; }
+      .post p { margin:0 0 8px 0; color:#333; }
+      .meta { font-size:0.85rem; color:#666; }
+    </style>
   </head>
   <body>
-    <div>
+    <div class="controls">
       <button id="example">example</button>
       <button id="cw1">cw1</button>
       <button id="cw2">cw2</button>
